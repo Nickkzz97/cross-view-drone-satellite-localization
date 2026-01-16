@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+#Data
+task_cv_model/
+*.zip
+*.pdf
+# Outputs
+outputs/
+output/
+
+# Environments
+.env
+venv/
+.ipynb_checkpoint*
+
+# OS
+.DS_Store
