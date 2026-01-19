@@ -91,6 +91,7 @@ Visualization and Qualitative Analysis
 
 Qualitative verification of alignment and GPS estimation can be performed using:
 
+Modify the file paths in the above commands according to your directory structure.
    visualization.ipynb
 
 The notebook provides visualizations such as:
