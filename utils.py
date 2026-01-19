@@ -270,7 +270,7 @@ def save_gps_on_satellite(i,
 
     cv2.imwrite(os.path.join(out_dir, f"gps_on_satellite_{i}.png"), vis)
 
-def align_drone_to_satellite(drone_img, sat_img, path, i,vis = False):
+def align_drone_to_satellite(drone_img, sat_img, path, geo_transform, i,vis = False):
     window = 512
     drone_img = cv2.resize(drone_img, (window, window))
     best = estimate_best_satellite_patch(drone_img, sat_img)

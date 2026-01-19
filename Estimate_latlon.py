@@ -54,8 +54,8 @@ def evaluate(dataset, desc="Evaluating", csv_path=None):
     for i,sample in enumerate(tqdm(dataset, desc=desc, total=len(dataset))):
         drone = cv2.imread(sample["path"])
         t0 = time.time()
-        if i %50 == 0: pred = align_drone_to_satellite(drone, sat_img, sample["path"],i, vis = True)
-        pred = align_drone_to_satellite(drone, sat_img, sample["path"], i,vis = False)
+        if i %50 == 0: pred = align_drone_to_satellite(drone, sat_img, sample["path"], geo_transform, i, vis = True)
+        pred = align_drone_to_satellite(drone, sat_img, sample["path"], geo_transform, i,vis = False)
         t1 = time.time()
 
         times.append(t1 - t0)
