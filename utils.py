@@ -130,7 +130,22 @@ def ransac_homography(kp_d, kp_s, matches):
     
     if inliers<8:
         return None, inliers
-    return H, inliers
+    return H, mask.ravel(),inliers
+
+# def ransac_homography(kp_d, kp_s, matches, thresh=6):
+    # if len(matches) < 8:
+    #     return None, None, 0
+
+    # src = np.float32([kp_d[m.queryIdx].pt for m in matches]).reshape(-1,1,2)
+    # dst = np.float32([kp_s[m.trainIdx].pt for m in matches]).reshape(-1,1,2)
+
+    # H, mask = cv2.findHomography(src, dst, cv2.RANSAC, thresh)
+
+    # if mask is None:
+    #     return None, None, 0
+
+    # inliers = int(mask.sum())
+    # return H, mask.ravel(), inliers
 
 def drone_center_to_sat_pixel(H, tile_offset, drone_shape):
     """

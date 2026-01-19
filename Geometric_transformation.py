@@ -36,7 +36,7 @@ for name in H_store.keys():
         geo_results.append(res)
 
 df_geo = pd.DataFrame(geo_results)
-# df_geo.to_csv("outputs/predicted_gps.csv", index=False)
+df_geo.to_csv("outputs/predicted_gps.csv", index=False)
 
 print('Sanity Check.....')
 print(df_geo[["latitude", "longitude"]].head())
