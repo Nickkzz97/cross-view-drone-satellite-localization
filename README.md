@@ -1,59 +1,99 @@
-# SuperPoint-Based Cross-View Drone Localization
+SuperPoint-Based Cross-View Drone Localization
+==============================================
 
-This repository implements a **vision-based cross-view localization pipeline** for estimating the geographic location (**latitude, longitude**) of drone images by registering them with a **georeferenced satellite map**.  
-The approach leverages **SuperPoint-based feature extraction**, a **sliding-window satellite patch search**, **homography estimation**, and **geospatial coordinate conversion** to perform visual localization.
+This repository implements a vision-based cross-view localization pipeline for estimating
+the geographic location (latitude, longitude) of drone images by registering them with a
+georeferenced satellite map.
+
+The approach leverages SuperPoint-based feature extraction, a sliding-window satellite
+patch search, homography estimation, and geospatial coordinate conversion to perform
+visual localization.
 
 The pipeline supports:
 - Localization with ground truth GPS (for evaluation)
 - Localization on unseen test images without ground truth
-- Saving predictions and metrics to CSV files
+- Saving predictions and evaluation metrics to CSV files
 
----
 
-##  Repository Overview
+Repository Overview
+-------------------
 
-Key scripts in this repository:
+Key scripts and files in this repository:
 
-- `Estimate_latlon.py` – Runs localization and generates predictions (with or without ground truth)
-- `metric_calculation.py` – Computes evaluation metrics from saved CSV results
-- `predict_on_test_image.py` – Performs GPS estimation on test images without ground truth
-- `utils.py` – Helper functions for matching, homography, and coordinate conversion
-- `visualization.ipynb` – Qualitative visualization and debugging
-- `requirements.txt` – Required Python dependencies
-- `output/` – Stores generated CSV files and visualizations
+- Estimate_latlon.py
+  Runs the localization pipeline and generates GPS predictions with or without ground truth.
 
----
+- metric_calculation.py
+  Computes evaluation metrics (e.g., localization error) from saved CSV results.
 
-##  Installation
+- predict_on_test_image.py
+  Performs GPS estimation on test images without ground truth GPS data.
 
-### 1. Clone the Repository
-```bash
-git clone <repository_url>
-cd <repository_name>
+- utils.py
+  Contains helper functions for feature matching, homography estimation,
+  and coordinate conversion.
 
-### 2. Install Dependencies
-pip install -r requirements.txt
+- visualization.ipynb
+  Provides qualitative visualization and debugging utilities.
 
-## Localization with Ground Truth (Training / Validation)
+- requirements.txt
+  Lists required Python dependencies.
 
-### Step 1: Run Localization: If ground truth GPS coordinates are available for drone images, you can estimate locations and evaluate performance as follows:
+- output/
+  Directory for storing generated CSV files and visualizations.
 
-python Estimate_latlon.py
-  - Registers each drone image with the satellite map
-  - Estimates latitude and longitude
-  - Saves predictions and errors to a CSV file
 
-### Step 2: Compute Evaluation Metrics
+Installation
+------------
 
-python metric_calculation.py
+1. Clone the repository:
 
-##Localization on Test Images (No Ground Truth)
-     python predict_on_test_image.py
+   git clone <repository_url>
+   cd <repository_name>
 
-## Qualitative verification of alignment and GPS estimation can be performed using:
-    visualization.ipynb
+2. Install dependencies:
 
-    Visualizations include:
-        - Selected satellite patch
-        - Warped drone image alignment
-        - Estimated GPS location overlaid on the satellite image
+   pip install -r requirements.txt
+
+
+Localization with Ground Truth (Training / Validation)
+------------------------------------------------------
+
+If ground truth GPS coordinates are available for drone images, the pipeline can be
+run in evaluation mode.
+
+Step 1: Run localization
+
+   python Estimate_latlon.py
+
+This script:
+- Registers each drone image with the satellite map
+- Estimates latitude and longitude
+- Saves predictions and localization errors to a CSV file
+
+Step 2: Compute evaluation metrics
+
+   python metric_calculation.py
+
+
+Localization on Test Images (No Ground Truth)
+--------------------------------------------
+
+For unseen drone images without ground truth GPS:
+
+   python predict_on_test_image.py
+
+This script estimates GPS coordinates and saves predictions to a CSV file.
+
+
+Visualization and Qualitative Analysis
+--------------------------------------
+
+Qualitative verification of alignment and GPS estimation can be performed using:
+
+   visualization.ipynb
+
+The notebook provides visualizations such as:
+- Selected satellite patches
+- Warped drone image alignment
+- Estimated GPS locations overlaid on the satellite image
